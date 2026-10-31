@@ -3,6 +3,7 @@
 
 	const links = [
 		{ href: '/', label: 'Home' },
+		{ href: '/2048', label: '2048' },
 		{ href: '/crossword', label: 'Crossword' },
 		{ href: '/about', label: 'About' },
 		{ href: '/contact', label: 'Contact' }
