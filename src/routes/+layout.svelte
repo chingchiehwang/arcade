@@ -53,6 +53,7 @@
 	.nav-wrap,
 	main,
 	footer p {
+		box-sizing: border-box;
 		max-width: var(--page-width);
 		margin: 0 auto;
 		padding: 0 var(--space-large);

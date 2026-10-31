@@ -19,7 +19,8 @@
 <style>
 	.board {
 		display: grid;
-		grid-template-columns: repeat(4, 1fr);
+		grid-template-columns: repeat(4, minmax(0, 1fr));
+		box-sizing: border-box;
 		gap: var(--space-small);
 		padding: var(--space-small);
 		width: min(100%, 28rem);
