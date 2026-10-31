@@ -1,3 +1,7 @@
+<script>
+	import { asset } from '$app/paths';
+</script>
+
 <svelte:head>
 	<title>About | ChingChieh Wang</title>
 </svelte:head>
@@ -7,7 +11,7 @@
 
 	<div class="info-grid">
 		<article class="profile">
-			<img src="/images/profile.png" alt="Illustration of a person wearing a suit and tie" />
+			<img src={asset('/images/profile.png')} alt="Illustration of a person wearing a suit and tie" />
 			<h2>ChingChieh Wang</h2>
 			<p>He/Him</p>
 		</article>

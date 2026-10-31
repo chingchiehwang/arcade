@@ -1,20 +1,21 @@
 <script>
 	import { page } from '$app/state';
+	import { resolve } from '$app/paths';
 
 	const links = [
-		{ href: '/', label: 'Home' },
-		{ href: '/2048', label: '2048' },
-		{ href: '/crossword', label: 'Crossword' },
-		{ href: '/about', label: 'About' },
-		{ href: '/contact', label: 'Contact' }
+		{ route: '/', label: 'Home' },
+		{ route: '/2048', label: '2048' },
+		{ route: '/crossword', label: 'Crossword' },
+		{ route: '/about', label: 'About' },
+		{ route: '/contact', label: 'Contact' }
 	];
 </script>
 
 <nav aria-label="Main">
 	<ul>
-		{#each links as link (link.href)}
+		{#each links as link (link.route)}
 			<li>
-				<a href={link.href} aria-current={page.url.pathname === link.href ? 'page' : undefined}>
+				<a href={resolve(link.route)} aria-current={page.route.id === link.route ? 'page' : undefined}>
 					{link.label}
 				</a>
 			</li>
