@@ -1,4 +1,4 @@
-import { move, movePoints, spawn, canMove, hasMoves } from '@chingchiehwang/arcade-core';
+import { move, movePoints, generateBlock, isDirectionMovable, isMovable } from '@chingchiehwang/arcade-core';
 
 const WIN_BLOCK = 2048;
 const STORAGE_KEY = 'arcade-2048';
@@ -9,7 +9,7 @@ const emptyBoard = () => [
 	[0, 0, 0, 0],
 	[0, 0, 0, 0]
 ];
-const freshBoard = () => spawn(spawn(emptyBoard()));
+const freshBoard = () => generateBlock(generateBlock(emptyBoard()));
 
 class Game {
 	board = $state(emptyBoard());
@@ -17,7 +17,7 @@ class Game {
 	best = $state(0);
 	initialized = $state(false);
 
-	over = $derived(this.initialized && !hasMoves(this.board));
+	over = $derived(this.initialized && !isMovable(this.board));
 	won = $derived(this.initialized && this.board.flat().some((value) => value >= WIN_BLOCK));
 	announcement = $derived(
 		!this.initialized
@@ -50,10 +50,10 @@ class Game {
 	}
 
 	play(direction) {
-		if (!this.initialized || this.over || !canMove(this.board, direction)) return;
+		if (!this.initialized || this.over || !isDirectionMovable(this.board, direction)) return;
 
 		this.score += movePoints(this.board, direction);
-		this.board = spawn(move(this.board, direction));
+		this.board = generateBlock(move(this.board, direction));
 		this.best = Math.max(this.best, this.score);
 		this.save();
 	}

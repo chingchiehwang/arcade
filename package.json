@@ -20,6 +20,6 @@
 		"#lib/*": "./src/lib/*"
 	},
 	"dependencies": {
-		"@chingchiehwang/arcade-core": "^0.1.1"
+		"@chingchiehwang/arcade-core": "^1.0.1"
 	}
 }
