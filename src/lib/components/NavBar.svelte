@@ -2,16 +2,19 @@
 	import { page } from '$app/state';
 	import { resolve } from '$app/paths';
 
+	let { user } = $props();
+
 	const links = [
 		{ route: '/', label: 'Home' },
 		{ route: '/2048', label: '2048' },
 		{ route: '/crossword', label: 'Crossword' },
+		{ route: '/games/battleship', label: 'Battleship' },
 		{ route: '/about', label: 'About' },
 		{ route: '/contact', label: 'Contact' }
 	];
 </script>
 
-<nav aria-label="Main">
+<nav>
 	<ul>
 		{#each links as link (link.route)}
 			<li>
@@ -20,6 +23,17 @@
 				</a>
 			</li>
 		{/each}
+		{#if user}
+			<li><span>{user.email}</span></li>
+			<li>
+				<form method="POST" action="/logout">
+					<button type="submit">Log out</button>
+				</form>
+			</li>
+		{:else}
+			<li><a href="/login">Log in</a></li>
+			<li><a href="/register">Register</a></li>
+		{/if}
 	</ul>
 </nav>
 
@@ -36,7 +50,9 @@
 		margin: 0;
 	}
 
-	a {
+	a,
+	span,
+	button {
 		display: flex;
 		min-height: 74px;
 		align-items: center;
@@ -47,10 +63,23 @@
 		color: #fff;
 		text-decoration: none;
 		transition: background-color 0.2s ease;
+		font: inherit;
+	}
+
+	form {
+		display: flex;
+	}
+
+	button {
+		border-top: 0;
+		border-bottom: 0;
+		cursor: pointer;
 	}
 
 	a:hover,
 	a:focus-visible,
+	button:hover,
+	button:focus-visible,
 	a[aria-current='page'] {
 		background: var(--orange);
 		color: var(--black);
@@ -62,7 +91,9 @@
 			justify-content: center;
 		}
 
-		a {
+		a,
+		span,
+		button {
 			min-height: 44px;
 		}
 	}

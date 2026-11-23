@@ -1,18 +1,22 @@
 <script>
 	import '#lib/styles/tokens.css';
 	import NavBar from '#lib/components/NavBar.svelte';
+	import { navigating } from '$app/state';
 
-	let { children } = $props();
+	let { data, children } = $props();
 </script>
 
 <header>
 	<div class="nav-wrap">
 		<span class="brand">ChingChieh Wang</span>
-		<NavBar />
+		<NavBar user={data.user} />
 	</div>
 </header>
 
 <main>
+	{#if navigating.to}
+		<p>Loading...</p>
+	{/if}
 	{@render children()}
 </main>
 
